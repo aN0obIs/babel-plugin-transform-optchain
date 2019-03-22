@@ -1,0 +1,1 @@
+oc(state).foo.bar.baz('zzz') === 'zzz' ? oc(state).a.b.z('z') : 1

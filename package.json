@@ -1,0 +1,39 @@
+{
+  "name": "babel-plugin-transform-optchain",
+  "version": "0.1.0",
+  "description": "Babel Transformer for Optional Chaining",
+  "repository": "https://github.com/aN0obIs/babel-plugin-transform-optchain.git",
+  "author": "Stepan Smagin <s.smagin@netris.ru>",
+  "license": "MIT",
+  "keywords": [
+    "babel-plugin"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "modulePathIgnorePatterns": [
+      "__test__/__fixtures__"
+    ],
+    "testEnvironment": "node",
+    "testRegex": "./__test__/.+\\.js$"
+  },
+  "dependencies": {
+    "@babel/core": "^7.4.0",
+    "@types/jest": "^24.0.11"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.4.2",
+    "babel-jest": "^24.4.4",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-tester": "^6.0.1",
+    "jest": "^24.5.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}
