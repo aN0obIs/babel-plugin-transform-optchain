@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-transform-optchain",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Babel Transformer for Optional Chaining",
   "repository": "https://github.com/aN0obIs/babel-plugin-transform-optchain.git",
   "author": "Stepan Smagin <s.smagin@netris.ru>",
