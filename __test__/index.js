@@ -1,5 +1,5 @@
 import pluginTester from 'babel-plugin-tester';
-import babelPluginTransformOptchain from '../src/index';
+import babelPluginTransformOptchain from '../src';
 import { join } from 'path';
 
 pluginTester({
