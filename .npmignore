@@ -1,3 +1,5 @@
+.idea
+node_modules
 src
-test
+__test__
 *.log
