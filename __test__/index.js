@@ -4,6 +4,12 @@ import { join } from 'path';
 
 pluginTester({
     plugin: babelPluginTransformOptchain,
-    snapshot: true,
-    fixtures: join(__dirname, '__fixtures__')
+    fixtures: join(__dirname, '__fixtures__'),
+    tests: [{
+        code: 'const safeState = oc(state).foo.bar;',
+        error: true
+    }, {
+        code: 'return oc(state);',
+        error: true
+    }]
 });

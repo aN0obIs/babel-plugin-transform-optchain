@@ -17,6 +17,16 @@ function constructLogicalExpression(chain) {
     return t.logicalExpression('&&', constructLogicalExpression(rest), right);
 }
 
+function isOcExpression(mExpr) {
+    return (
+        t.isCallExpression(mExpr) &&
+        t.isIdentifier(mExpr.callee) &&
+        mExpr.callee.name === 'oc' &&
+        mExpr.arguments.length === 1 &&
+        t.isIdentifier(mExpr.arguments[0])
+    );
+}
+
 export default function identifierReversePlugin() {
     return {
         name: 'babel-plugin-transform-optchain',
@@ -45,6 +55,8 @@ export default function identifierReversePlugin() {
                             )
                         );
                     }
+                } else if (isOcExpression(path.node)) {
+                    throw new Error('[optchain-transform] Can\'t handle partial expressions.');
                 }
             },
             ImportDeclaration(path) {
