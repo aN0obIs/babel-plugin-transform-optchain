@@ -27,31 +27,29 @@ function isOcExpression(mExpr) {
     );
 }
 
+function void0() {
+    return t.unaryExpression('void', t.numericLiteral(0));
+}
+
 export default function identifierReversePlugin() {
     return {
         name: 'babel-plugin-transform-optchain',
         visitor: {
             CallExpression(path) {
-                if (t.isMemberExpression(path.node.callee) && path.node.arguments.length === 1) {
+                if (t.isMemberExpression(path.node.callee) && path.node.arguments.length <= 1) {
                     let mExpr = path.node.callee;
                     let chain = [];
                     while (t.isMemberExpression(mExpr)) {
                         chain.push(mExpr.property.name);
                         mExpr = mExpr.object;
                     }
-                    if (
-                        t.isCallExpression(mExpr) &&
-                        t.isIdentifier(mExpr.callee) &&
-                        mExpr.callee.name === 'oc' &&
-                        mExpr.arguments.length === 1 &&
-                        t.isIdentifier(mExpr.arguments[0])
-                    ) {
+                    if (isOcExpression(mExpr)) {
                         chain.push(mExpr.arguments[0].name);
                         path.replaceWith(
                             t.conditionalExpression(
                                 constructLogicalExpression(chain),
                                 constructMemberExpression(chain),
-                                path.node.arguments[0]
+                                path.node.arguments.length === 1 ? path.node.arguments[0] : void0()
                             )
                         );
                     }
